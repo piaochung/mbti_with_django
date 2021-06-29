@@ -1,1 +1,32 @@
-<h2>form html</h2>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<section id="survey">
+    <div class="wrapper">
+        <form action="" method="POST">
+            <div class="test">
+                <div class="question_container">
+                    <h3 class="number">1 / 12</h3>
+                    <h3 class="question">둘 중 어느 쪽에 더 가까우신가요?</h3>
+                </div>
+                <div class="answer">
+                    <div>
+                        <input id="one_1" type="radio" name="answer_1" value="1">
+                        <label for="one_1">혼자서 일 하는 것을 선호한다.</label>
+                    </div>
+                    <div>
+                        <input id="one_2" type="radio" name="answer_1" value="-1">
+                        <label for="one_2">팀원 간 협력하는 것을 선호한다.</label>
+                    </div>
+                </div>
+                <div class="btn_wrap">
+                    <button class="next_btn" type="button">다 음</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script type="text/javascript" src="{% static 'js/form.js' %}"></script>
+{% endblock %}
