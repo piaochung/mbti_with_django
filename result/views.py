@@ -16,11 +16,11 @@ def result(request):
         result.count += 1
         result.save()
 
-        percentage = result.count // total_count * 100
+        percentage = result.count / total_count * 100
 
         context = {
             'result_info': result_info,
-            'percentage': percentage,
+            'percentage': round(percentage, 2),
         }
     return render(request, 'result.html', context)
 
