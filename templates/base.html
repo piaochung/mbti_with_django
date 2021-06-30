@@ -14,6 +14,11 @@
     {% elif '/form/' == request.path %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
     {% elif '/result/' == request.path %}
+    <meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Your Website Title" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/result.css' %}">
     {% elif '/result_set' in request.path %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/result_group_page.css' %}">

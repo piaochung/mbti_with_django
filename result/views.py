@@ -3,7 +3,26 @@ from .models import Result, ResultInfo
 
 # Create your views here.
 def result(request):
-    return render(request, 'result.html')
+    if request.method == "GET":
+        type = request.GET['type']
+        result = Result.objects.get(name=type)
+        results = Result.objects.all()
+        result_info = ResultInfo.objects.get(result__name=type)
+
+        total_count = 0
+        for item in results:
+            total_count += item.count
+
+        result.count += 1
+        result.save()
+
+        percentage = result.count // total_count * 100
+
+        context = {
+            'result_info': result_info,
+            'percentage': percentage,
+        }
+    return render(request, 'result.html', context)
 
 
 def result_set(request):

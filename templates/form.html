@@ -17,19 +17,22 @@
                     {% for choice in choices %}
                     {% if choice.question == question %}
                     <div>
-                        <input id="one_{{ choice.pk }}" type="radio" name="answer_{{ choice.pk }}" value="1">
+                        <input id="one_{{ choice.pk }}" type="radio" name="answer_{{ choice.question.number }}" value="{{ choice.score }}">
                         <label for="one_{{ choice.pk }}">{{ choice.content }}</label>
                     </div>
                     {% endif %}
                     {% endfor %}
                 </div>
                 <div class="btn_wrap {% if question.number != 1 %}btn_sort{% endif %}">
-                    {% if question.number != total_count and question.number != 1 %}
+                    {% if question.number == 1 %}
+                    <button class="next_btn" type="button">다 음</button>
+                    {% elif question.number < total_count %}
                     <button class="prev_btn" type="button">이 전</button>
-                    {% elif question.number == total_count %}
+                    <button class="next_btn" type="button">다 음</button>
+                    {% else %}
+                    <button class="prev_btn" type="button">이 전</button>
                     <input class="submit_btn" type="submit" value="제 출">
                     {% endif %}
-                    <button class="next_btn" type="button">다 음</button>
                 </div>
             </div>
             {% endfor %}
@@ -38,18 +41,18 @@
 </section>
 <script type="text/javascript" src="{% static 'js/form.js' %}"></script>
 <script>
-    $(function () {
-        $("form").submit(function () {
-            let radios = $('input[type=radio]:checked');
-            if (radios.length < "{{ total_count }}") {
-                console.log('radios: ' + radios.length)
-                console.log('total_count: ' + "{{ total_count }}")
-                alert("선택되지 않은 문항이 존재합니다.");
-                return false;
-            }
-            return true;
-        });
-    })
+    // $(function () {
+    //     $("form").submit(function () {
+    //         let radios = $('input[type=radio]:checked');
+    //         if (radios.length < "{{ total_count }}") {
+    //             console.log('radios: ' + radios.length)
+    //             console.log('total_count: ' + "{{ total_count }}")
+    //             alert("선택되지 않은 문항이 존재합니다.");
+    //             return false;
+    //         }
+    //         return true;
+    //     });
+    // })
 </script>
 
 {% endblock %}
