@@ -1,3 +1,9 @@
+body {
+  background-color: #b3d5f2;
+  color: #000;
+  font-family: "Cafe24SsurroundAir";
+}
+
 button {
   font-family: "Cafe24SsurroundAir";
   font-size: 20px;
@@ -242,22 +248,22 @@ button:hover {
   color: #fff;
 }
 
-.sangmyung {
+.logo_image {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.sangmyung a {
-  width: 150px;
+.logo_image a {
+  width: 200px;
 }
 
-.sangmyung img {
+.logo_image img {
   width: 100%;
   height: auto;
 }
 
-.sangmyung p {
+.logo_image p {
   padding-top: 20px;
   font-size: 10px;
   text-align: center;

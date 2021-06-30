@@ -27,7 +27,7 @@
             <ul>
                 <li>
                     <a href="https://everytime.kr/" target="_blank">
-                        <img src="img/everytime.png" alt="에브리타임으로 가기">
+                        <img src="{% static 'img/everytime.png' %}" alt="에브리타임으로 가기">
                         <h3>에브리타임 바로 가기</h3>
                         <button type="button">시간표 확인하러 가기</button>
                     </a>
@@ -36,7 +36,7 @@
             <ul>
                 <li>
                     <a id="mbti" href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95" target="_blank">
-                        <img src="img/mbti_logo.svg" alt="mbti 홈페이지 가기">
+                        <img src="{% static 'img/mbti_logo.svg' %}" alt="mbti 홈페이지 가기">
                         <h3>mbti 홈페이지 바로 가기</h3>
                         <button type="button">나의 mbti는?</button>
                     </a>
@@ -58,22 +58,22 @@
             <ul>
                 <li>
                     <h3>난 이런 유형이 아니야 검사가 잘못되었어!!!</h3>
-                    <a href="index.html">
+                    <a href="{% url 'home' %}">
                         <button type="button">테스트 다시 하기</button>
                     </a>
                 </li>
                 <li>
                     <h3>어떤 유형들이 있을까?</h3>
-                    <a href="result_group_page.html"
+                    <a href="{% url 'result_set' %}"
                         target="_blank">
                         <button type="button">다른 결과 알아보기</button>
                     </a>
                 </li>
             </ul>
         </div>
-        <div class="sangmyung">
-            <a href="https://www.smu.ac.kr/ko/index.do" target="_blank">
-                <img src="img/img_logo.png" alt="sangmyung">
+        <div class="logo_image">
+            <a href="https://www.notion.so/chungchung-34d224bce3154434a9d5c85af7d4511e" target="_blank">
+                <img src="{% static 'img/img_logo.png' %}" alt="Logo Image">
             </a>
         </div>
     </div>

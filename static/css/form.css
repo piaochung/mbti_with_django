@@ -2,7 +2,7 @@ body {
   background-color: #b3d5f2;
   color: #000;
   font-family: "Cafe24SsurroundAir";
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 #survey {

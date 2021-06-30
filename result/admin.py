@@ -6,6 +6,8 @@ from .models import Result, ResultInfo
 class ResultAdmin(admin.ModelAdmin):
     list_display = ('number', 'name', 'count')
 
+class ResultInfoAdmin(admin.ModelAdmin):
+    list_display = ('sub_title', 'title', 'description_1', 'description_2', 'result_image')
 
 admin.site.register(Result, ResultAdmin)
-admin.site.register(ResultInfo)
+admin.site.register(ResultInfo, ResultInfoAdmin)

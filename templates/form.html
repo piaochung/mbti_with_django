@@ -5,28 +5,51 @@
 
 <section id="survey">
     <div class="wrapper">
-        <form action="" method="POST">
+        <form action="{% url 'form_check' total_count %}" method="POST">
+            {% csrf_token %}
+            {% for question in questions %}
             <div class="test">
                 <div class="question_container">
-                    <h3 class="number">1 / 12</h3>
-                    <h3 class="question">둘 중 어느 쪽에 더 가까우신가요?</h3>
+                    <h3 class="number">{{ question.number }} / {{ total_count }}</h3>
+                    <h3 class="question">{{ question.content }}</h3>
                 </div>
                 <div class="answer">
+                    {% for choice in choices %}
+                    {% if choice.question == question %}
                     <div>
-                        <input id="one_1" type="radio" name="answer_1" value="1">
-                        <label for="one_1">혼자서 일 하는 것을 선호한다.</label>
+                        <input id="one_{{ choice.pk }}" type="radio" name="answer_{{ choice.pk }}" value="1">
+                        <label for="one_{{ choice.pk }}">{{ choice.content }}</label>
                     </div>
-                    <div>
-                        <input id="one_2" type="radio" name="answer_1" value="-1">
-                        <label for="one_2">팀원 간 협력하는 것을 선호한다.</label>
-                    </div>
+                    {% endif %}
+                    {% endfor %}
                 </div>
-                <div class="btn_wrap">
+                <div class="btn_wrap {% if question.number != 1 %}btn_sort{% endif %}">
+                    {% if question.number != total_count and question.number != 1 %}
+                    <button class="prev_btn" type="button">이 전</button>
+                    {% elif question.number == total_count %}
+                    <input class="submit_btn" type="submit" value="제 출">
+                    {% endif %}
                     <button class="next_btn" type="button">다 음</button>
                 </div>
             </div>
+            {% endfor %}
         </form>
     </div>
 </section>
 <script type="text/javascript" src="{% static 'js/form.js' %}"></script>
+<script>
+    $(function () {
+        $("form").submit(function () {
+            let radios = $('input[type=radio]:checked');
+            if (radios.length < "{{ total_count }}") {
+                console.log('radios: ' + radios.length)
+                console.log('total_count: ' + "{{ total_count }}")
+                alert("선택되지 않은 문항이 존재합니다.");
+                return false;
+            }
+            return true;
+        });
+    })
+</script>
+
 {% endblock %}

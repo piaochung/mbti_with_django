@@ -5,94 +5,19 @@
 <section>
     <h2 class="main_title">다른 유형은 어떤게 있을까?</h2>
     <div class="wrapper">
-        <div class="columns">
+        {% for item in result_info %}
+            {% if forloop.counter0|divisibleby:"4" %}
+            <div class="columns">
+            {% endif %}
             <figure>
-                <img onclick="img_click('ISTJ')" src="./img/character_image/0000.png" alt="0000 Image">
-                <figcaption>정리의 달인</figcaption>
-                <h2>청렴결백한 논리주의자</h2>
+                <img onclick="img_click('{{ item.result.name }}')" src="{{ item.result_image.url }}" alt="{{ item.result }} Image">
+                <figcaption>{{ item.title }}</figcaption>
+                <h2>{{ item.sub_title }}</h2>
             </figure>
-            <figure>
-                <img onclick="img_click('ISTP')" src="./img/character_image/0001.png" alt="0000 Image">
-                <figcaption>설계 달인</figcaption>
-                <h2>만능 재주군</h2>
-            </figure>
-            <figure>
-                <img onclick="img_click('ISFJ')" src="./img/character_image/0010.png" alt="0000 Image">
-                <figcaption>최고의 서포터</figcaption>
-                <h2>용감한 수호자</h2>
-            </figure>
-            <figure>
-                <img onclick="img_click('INTJ')" src="./img/character_image/0100.png" alt="0000 Image">
-                <figcaption>이성적인 전략가</figcaption>
-                <h2>용의주도한 전략가</h2>
-            </figure>
-        </div>
-        <div class="columns">
-            <figure>
-                <img onclick="img_click('ESTJ')" src="./img/character_image/1000.png" alt="0000 Image">
-                <figcaption>계획왕</figcaption>
-                <h2>엄격한 관리자</h2>
-            </figure>
-            <figure>
-                <img onclick="img_click('ISFP')" src="./img/character_image/0011.png" alt="0000 Image">
-                <figcaption>날개 없는 천사</figcaption>
-                <h2>호기심 많은 예술가</h2>
-            </figure>
-            <figure>
-                <img onclick="img_click('INTP')" src="./img/character_image/0101.png" alt="0000 Image">
-                <figcaption>게으른 천재</figcaption>
-                <h2>논리적인 사색가</h2>
-            </figure>
-            <figure>
-                <img onclick="img_click('ESTP')" src="./img/character_image/1001.png" alt="0000 Image">
-                <figcaption>현실적 중재자</figcaption>
-                <h2>모함을 즐기는 사업가</h2>
-            </figure>
-        </div>
-        <div class="columns">
-            <figure>
-                <img onclick="img_click('INFJ')" src="./img/character_image/0110.png" alt="0000 Image">
-                <figcaption>성실한 완벽주의자</figcaption>
-                <h2>선의의 옹호자</h2>
-            </figure>
-            <figure>
-                <img onclick="img_click('ENTJ')" src="./img/character_image/1100.png" alt="0000 Image">
-                <figcaption>본투비 조장</figcaption>
-                <h2>대담한 통솔자</h2>
-            </figure>
-            <figure>
-                <img onclick="img_click('ESFJ')" src="./img/character_image/1010.png" alt="0000 Image">
-                <figcaption>분위기 메이커</figcaption>
-                <h2>사교적인 외교관</h2>
-            </figure>
-            <figure>
-                <img onclick="img_click('ENFJ')" src="./img/character_image/1110.png" alt="0000 Image">
-                <figcaption>열정가득 배려왕</figcaption>
-                <h2>정의로운 사회운동가</h2>
-            </figure>
-        </div>
-        <div class="columns">
-            <figure>
-                <img onclick="img_click('ENTP')" src="./img/character_image/1101.png" alt="0000 Image">
-                <figcaption>창의력 대장</figcaption>
-                <h2>뜨거운 논쟁을 즐기는 변론가</h2>
-            </figure>
-            <figure>
-                <img onclick="img_click('ESFP')" src="./img/character_image/1011.png" alt="0000 Image">
-                <figcaption>에너지 뿜뿜</figcaption>
-                <h2>자유로운 영혼의 연예인</h2>
-            </figure>
-            <figure>
-                <img onclick="img_click('INFP')" src="./img/character_image/0111.png" alt="0000 Image">
-                <figcaption>게으른 완벽주의자</figcaption>
-                <h2>열정적인 중재자</h2>
-            </figure>
-            <figure> 
-                <img onclick="img_click('ENFP')" src="./img/character_image/1111.png" alt="0000 Image">
-                <figcaption>칭찬은 나를 숨쉬게 해</figcaption>
-                <h2>재기발랄한 활동가</h2>
-            </figure>
-        </div>
+            {% if forloop.counter|divisibleby:"4" %}
+            </div>
+            {% endif %}
+        {% endfor %}
     </div>
 
     <div id="myModal" class="modal">
@@ -101,7 +26,7 @@
             <div class="warrper">
                 <div class="titles">
                     <h3 id="sub_title">sub_title</h2>
-                    <h1 id="title">title</h2>
+                        <h1 id="title">title</h2>
                 </div>
                 <div class="result_img">
                     <img id="type_image" src="" alt="결과 이미지">
@@ -113,13 +38,67 @@
                     </ul>
                 </div>
                 <div class="buttons">
-                    <a href="index.html"><button>테스트 다시 하기</button></a>
-                    <a href="https://www.smu.ac.kr/ko/index.do" target="_blank"><img src="img/img_logo.png" alt="상명대학교 이미지"></a>
+                    <a href="{% url 'home' %}"><button>테스트 다시 하기</button></a>
+                    <a href="https://www.notion.so/chungchung-34d224bce3154434a9d5c85af7d4511e" target="_blank"><img src="{% static 'img/img_logo.png' %}"
+                            alt="로고 이미지"></a>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="{% static 'js/result_group_page.js' %}"></script>
 </section>
+
+<script>
+    const modal = document.getElementById("myModal")
+    const span = document.getElementsByClassName("close")[0];
+    
+    var sub_title = document.getElementById("sub_title")
+    var title = document.getElementById("title")
+    var result_img = document.getElementById("type_image")
+    var description_1 = document.getElementById("description_1")
+    var description_2 = document.getElementById("description_2")
+
+    let info = [
+        {% for item in result_info %}
+            {
+                type: "{{ item.result.name }}",
+                sub_title: "{{ item.sub_title }}",
+                title: "{{ item.title }}",
+                result_img: "{{ item.result_image.url }}",
+                description_1: "{{ item.description_1 }}",
+                description_2: "{{ item.description_2 }}",
+            },
+        {% endfor %}
+    ]
+
+    console.log(info)
+    function set_value_to_modal(value){
+        console.log(value)
+        sub_title.innerText = value['sub_title']
+        title.innerText = value['title']
+        result_img.src = value['result_img']
+        description_1.innerText = value['description_1']
+        description_2.innerText = value['description_2']
+    }
+
+    function img_click(type){
+        for (let i=0; i<info.length; i++){
+            if (info[i]['type'] == type){
+                set_value_to_modal(info[i])
+            }
+        }
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(e){
+        if (e.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+</script>
 
 {% endblock %}

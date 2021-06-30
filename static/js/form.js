@@ -15,21 +15,6 @@ function scrollDown(top) {
     }, 500);
 }
 
-function on_submit() {
-    let question_length = document.getElementsByClassName("answer").length;
-    let result = []
-    console.log(question_length);
-
-    for (let i = 0; i < question_length; i++) {
-        for (let j = 0; j < 2; j++) {
-            if (document.getElementsByName(`answer_${i + 1}`)[j].checked == true) {
-                result.push(document.getElementsByName(`answer_${i + 1}`)[j].value);
-            }
-        }
-    }
-    localStorage.setItem("result", JSON.stringify(result));
-}
-
 $(function () {
     $('.next_btn:button').click(function (e) {
         let divs = $(this).parent().prev().children();
@@ -47,15 +32,6 @@ $(function () {
         let parent_top = $(this).parent().parent()[0].offsetTop;
         e.preventDefault();
         scrollUp(parent_top);
-    });
-
-    $("#form").submit(function () {
-        let radios = $('input[type=radio]:checked');
-        if (radios.length < max_question_length) {
-            alert("문항이 선택되지 않았습니다.");
-            return false;
-        }
-        return true;
     });
 
     $("html, body").animate({
